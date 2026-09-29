@@ -101,13 +101,14 @@
 
   .project {
     flex: 0 0 auto; scroll-snap-align: start; display: flex; flex-direction: column; gap: .6rem;
-    text-decoration: none; color: inherit; max-width: 22rem;
+    text-decoration: none; color: inherit; width: 20rem; max-width: 22rem;
   }
   .project .frame {
-    height: 22rem; display: flex; align-items: flex-end; border-radius: 10px; overflow: hidden;
+    height: 22rem; width: 100%; display: flex; align-items: flex-end; border-radius: 10px; overflow: hidden;
     background: var(--c, var(--line));
   }
   .project .frame img { max-height: 100%; max-width: 100%; width: auto; object-fit: contain; display: block; margin: 0 auto; }
+  .project .frame iframe { width: 100%; height: 100%; border: 0; display: block; }
   .project .frame .placeholder {
     width: 100%; height: 100%; display: grid; place-items: center; color: #fff;
     font: 800 1.05rem var(--display); text-align: center; padding: 1rem;
@@ -218,19 +219,19 @@
         <button type="button" class="carousel-nav prev" aria-label="Scroll left">&larr;</button>
         <div class="carousel-track">
       <div class="project">
-        <div class="frame" style="--c:#e0457b"><img src="images/posters/4page-poster.png" alt="4-Page Poster"></div>
+        <div class="frame" style="--c:#e0457b"><img src="images/4page-poster.png" alt="4-Page Poster"></div>
         <div class="caption"><h3>4-Page Poster</h3></div>
       </div>
       <div class="project">
-        <div class="frame" style="--c:#7a3fd1"><img src="images/posters/retasify-a3-poster.png" alt="Retasify A3 Poster"></div>
+        <div class="frame" style="--c:#7a3fd1"><img src="images/retasify-a3-poster.png" alt="Retasify A3 Poster"></div>
         <div class="caption"><h3>Retasify A3 Poster</h3></div>
       </div>
       <div class="project">
-        <div class="frame" style="--c:#d9772b"><img src="images/posters/skyrocket.png" alt="Skyrocket"></div>
+        <div class="frame" style="--c:#d9772b"><img src="images/skyrocket.png" alt="Skyrocket"></div>
         <div class="caption"><h3>Skyrocket</h3></div>
       </div>
       <div class="project">
-        <div class="frame" style="--c:#1f8a70"><img src="images/posters/ucsp.png" alt="UCSP"></div>
+        <div class="frame" style="--c:#1f8a70"><img src="images/ucsp.png" alt="UCSP"></div>
         <div class="caption"><h3>UCSP</h3></div>
       </div>
         </div>
@@ -245,15 +246,15 @@
         <button type="button" class="carousel-nav prev" aria-label="Scroll left">&larr;</button>
         <div class="carousel-track">
       <a class="project" href="https://canva.link/z2eprb1j71p6orh" target="_blank" rel="noopener">
-        <div class="frame" style="--c:#7a3fd1"><img src="images/branding/threadoffables.png" alt="Thread of Fables branding cover"></div>
+        <div class="frame" style="--c:#7a3fd1"><img src="images/threadoffables.png" alt="Thread of Fables branding cover"></div>
         <div class="caption"><h3>Thread of Fables</h3><p>Logo, colors and visual identity for a game.</p></div>
       </a>
       <a class="project" href="https://canva.link/y9v6yv5ungz8i8a" target="_blank" rel="noopener">
-        <div class="frame" style="--c:#1f8a70"><img src="images/branding/retasify.png" alt="Retasify branding cover"></div>
+        <div class="frame" style="--c:#1f8a70"><img src="images/retasify.png" alt="Retasify branding cover"></div>
         <div class="caption"><h3>Retasify</h3><p>Brand identity for a sustainable fashion start-up.</p></div>
       </a>
       <a class="project" href="https://canva.link/ggv268hd2khy4sg" target="_blank" rel="noopener">
-        <div class="frame" style="--c:#e0457b"><img src="images/branding/jjangaida.png" alt="Jjang Aida branding cover"></div>
+        <div class="frame" style="--c:#e0457b"><img src="images/jjangaida.png" alt="Jjang Aida branding cover"></div>
         <div class="caption"><h3>Jjang Aida</h3><p>Brand identity for a small Korean store.</p></div>
       </a>
         </div>
@@ -264,16 +265,16 @@
     <!-- ============ UI/UX ============ -->
     <section id="mobile-app">
       <h2>Mobile app design</h2>
-      <p class="intro">Each image opens a Figma prototype you can click through.</p>
+      <p class="intro">Click into a preview to scroll and tap through the live prototype.</p>
       <div class="carousel">
         <button type="button" class="carousel-nav prev" aria-label="Scroll left">&larr;</button>
         <div class="carousel-track">
-      <a class="project" href="https://www.figma.com/proto/xo4ktxK4gK10ykyVl1AWxs/PHashion-in-the-Making?node-id=11-5&amp;p=f&amp;t=nDoCUOqASpIfUCND-1&amp;scaling=scale-down&amp;content-scaling=fixed&amp;page-id=0%3A1&amp;starting-point-node-id=3%3A3&amp;show-proto-sidebar=1" target="_blank" rel="noopener">
-        <div class="frame" style="--c:#141b34"><span class="placeholder">PHashion in the Making<br><small>Add image</small></span></div>
+      <a class="project" href="https://www.figma.com/proto/xo4ktxK4gK10ykyVl1AWxs/PHashion-in-the-Making?node-id=11-5&p=f&t=nDoCUOqASpIfUCND-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=3%3A3&show-proto-sidebar=1" target="_blank" rel="noopener">
+        <div class="frame" style="--c:#141b34"><iframe src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2Fxo4ktxK4gK10ykyVl1AWxs%2FPHashion-in-the-Making%3Fnode-id%3D11-5%26p%3Df%26t%3DnDoCUOqASpIfUCND-1%26scaling%3Dscale-down%26content-scaling%3Dfixed%26page-id%3D0%253A1%26starting-point-node-id%3D3%253A3%26show-proto-sidebar%3D1" allowfullscreen loading="lazy" title="PHashion in the Making prototype preview"></iframe></div>
         <div class="caption"><h3>PHashion in the Making</h3><p>Mobile app design for a sustainable fashion start-up.</p></div>
       </a>
-      <a class="project" href="https://www.figma.com/proto/HGxOidjjZ0zB3rT3eVna3F/PHashion?node-id=13-71&amp;starting-point-node-id=1%3A2&amp;content-scaling=responsive&amp;t=ZYOrZjrCzJmF2KJJ-1" target="_blank" rel="noopener">
-        <div class="frame" style="--c:#2f4bff"><span class="placeholder">PHashion (Earlier Version)<br><small>Add image</small></span></div>
+      <a class="project" href="https://www.figma.com/proto/HGxOidjjZ0zB3rT3eVna3F/PHashion?node-id=13-71&starting-point-node-id=1%3A2&content-scaling=responsive&t=ZYOrZjrCzJmF2KJJ-1" target="_blank" rel="noopener">
+        <div class="frame" style="--c:#2f4bff"><iframe src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FHGxOidjjZ0zB3rT3eVna3F%2FPHashion%3Fnode-id%3D13-71%26starting-point-node-id%3D1%253A2%26content-scaling%3Dresponsive%26t%3DZYOrZjrCzJmF2KJJ-1" allowfullscreen loading="lazy" title="PHashion (Earlier Version) prototype preview"></iframe></div>
         <div class="caption"><h3>PHashion (Earlier Version)</h3><p>An earlier version of the PHashion mobile app.</p></div>
       </a>
         </div>
@@ -283,16 +284,16 @@
 
         <section id="website">
       <h2>Website design</h2>
-      <p class="intro">Each image opens a Figma prototype you can click through.</p>
+      <p class="intro">Click into a preview to scroll and tap through the live prototype.</p>
       <div class="carousel">
         <button type="button" class="carousel-nav prev" aria-label="Scroll left">&larr;</button>
         <div class="carousel-track">
-      <a class="project" href="https://www.figma.com/proto/2uu8Cc0n9Lkeg1h5WORsn5/Jjang-Aida?node-id=32-502&amp;p=f&amp;t=x9ZNr7SZqDW0QN1X-1&amp;scaling=scale-down&amp;content-scaling=fixed&amp;page-id=0%3A1&amp;starting-point-node-id=32%3A502" target="_blank" rel="noopener">
-        <div class="frame" style="--c:#e0457b"><span class="placeholder">Jjang Aida<br><small>Add image</small></span></div>
+      <a class="project" href="https://www.figma.com/proto/2uu8Cc0n9Lkeg1h5WORsn5/Jjang-Aida?node-id=32-502&p=f&t=x9ZNr7SZqDW0QN1X-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=32%3A502" target="_blank" rel="noopener">
+        <div class="frame" style="--c:#e0457b"><iframe src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2F2uu8Cc0n9Lkeg1h5WORsn5%2FJjang-Aida%3Fnode-id%3D32-502%26p%3Df%26t%3Dx9ZNr7SZqDW0QN1X-1%26scaling%3Dscale-down%26content-scaling%3Dfixed%26page-id%3D0%253A1%26starting-point-node-id%3D32%253A502" allowfullscreen loading="lazy" title="Jjang Aida prototype preview"></iframe></div>
         <div class="caption"><h3>Jjang Aida</h3><p>Mobile website design for a small Korean store.</p></div>
       </a>
-      <a class="project" href="https://www.figma.com/proto/dPLVJ0zlCXV3BJpjQoAFm5/Retasify-Landing-Page?node-id=464-71&amp;p=f&amp;t=f1xNl61umr3CsU5r-1&amp;scaling=scale-down&amp;content-scaling=fixed&amp;page-id=0%3A1" target="_blank" rel="noopener">
-        <div class="frame" style="--c:#1f8a70"><span class="placeholder">Retasify Landing Page<br><small>Add image</small></span></div>
+      <a class="project" href="https://www.figma.com/proto/dPLVJ0zlCXV3BJpjQoAFm5/Retasify-Landing-Page?node-id=464-71&p=f&t=f1xNl61umr3CsU5r-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1" target="_blank" rel="noopener">
+        <div class="frame" style="--c:#1f8a70"><iframe src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FdPLVJ0zlCXV3BJpjQoAFm5%2FRetasify-Landing-Page%3Fnode-id%3D464-71%26p%3Df%26t%3Df1xNl61umr3CsU5r-1%26scaling%3Dscale-down%26content-scaling%3Dfixed%26page-id%3D0%253A1" allowfullscreen loading="lazy" title="Retasify Landing Page prototype preview"></iframe></div>
         <div class="caption"><h3>Retasify Landing Page</h3><p>Landing page design for a sustainable fashion start-up.</p></div>
       </a>
         </div>
@@ -312,8 +313,6 @@
 </div>
 
 <!-- ============ GALLERIES (pop-ups) ============ -->
-<!-- Poster images live in the images/posters/ folder. To add a poster, copy a <figure> block
-     and change the file name, alt text and caption. -->
 <script>
   document.querySelectorAll('.carousel').forEach(function (car) {
     var track = car.querySelector('.carousel-track');

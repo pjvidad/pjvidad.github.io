@@ -82,61 +82,40 @@
   }
   .timeline p { margin: .3rem 0 0; }
 
-  /* Projects */
-  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr)); gap: 1.5rem; }
-  .project { background: var(--card); border: 2px solid var(--ink); border-radius: 14px; overflow: hidden; display: flex; flex-direction: column; }
-  .project .thumb {
-    aspect-ratio: 4 / 3; display: grid; place-items: center; text-align: center; padding: 1rem;
-    background: var(--c, var(--blue)); color: #fff; font: 800 1.1rem var(--display);
-    border-bottom: 2px solid var(--ink);
+  /* Carousels: horizontal-scrolling rows of cards, one per category */
+  .carousel { position: relative; margin-top: 1.5rem; }
+  .carousel-track {
+    display: flex; gap: 1.25rem; overflow-x: auto; scroll-snap-type: x mandatory;
+    padding-bottom: .5rem; scrollbar-width: none;
   }
-  .project .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .project .body { padding: 1.1rem 1.2rem 1.3rem; display: flex; flex-direction: column; gap: .5rem; flex: 1; }
-  .project h3 { font-size: 1.25rem; }
-  .project p { margin: 0; color: var(--muted); font-size: 1rem; }
-  .tags { display: flex; flex-wrap: wrap; gap: .4rem; list-style: none; padding: 0; margin: .2rem 0 0; }
-  .tags li, .tags > span { font-size: .82rem; padding: .1rem .6rem; border-radius: 999px; background: var(--paper); border: 1px solid var(--line); }
-  .project .more { margin-top: auto; padding-top: .4rem; font-weight: 700; color: var(--blue); }
-  .project a.more { text-decoration: underline; }
+  .carousel-track::-webkit-scrollbar { display: none; }
+  .carousel-nav {
+    position: absolute; top: 40%; translate: 0 -50%; width: 2.6rem; height: 2.6rem; border-radius: 50%;
+    border: 2px solid var(--ink); background: var(--card); color: var(--ink); font: 700 1.2rem var(--body);
+    cursor: pointer; display: grid; place-items: center; box-shadow: 3px 3px 0 var(--ink);
+  }
+  .carousel-nav:hover { background: var(--ink); color: #fff; }
+  .carousel-nav.prev { left: -1.3rem; }
+  .carousel-nav.next { right: -1.3rem; }
+  @media (max-width: 30rem) { .carousel-nav { display: none; } }
 
-  /* Clickable card that opens a gallery */
-  button.project {
-    font: inherit; color: inherit; text-align: left; padding: 0; width: 100%;
-    cursor: pointer; transition: box-shadow .15s;
+  .project {
+    flex: 0 0 auto; scroll-snap-align: start; display: flex; flex-direction: column; gap: .6rem;
+    text-decoration: none; color: inherit; max-width: 22rem;
   }
-  button.project:hover { box-shadow: 6px 6px 0 var(--blue); }
-  a.project { color: inherit; text-decoration: none; transition: box-shadow .15s; }
-  a.project:hover { box-shadow: 6px 6px 0 var(--blue); }
-
-  /* Gallery pop-up */
-  dialog.gallery {
-    width: min(64rem, 94vw); max-height: 90vh; padding: 0; overflow: auto;
-    border: 2px solid var(--ink); border-radius: 16px; background: var(--paper); color: var(--ink);
+  .project .frame {
+    height: 22rem; display: flex; align-items: flex-end; border-radius: 10px; overflow: hidden;
+    background: var(--c, var(--line));
   }
-  dialog.gallery::backdrop { background: rgba(20, 27, 52, .78); }
-  .gallery-head {
-    position: sticky; top: 0; z-index: 1; display: flex; justify-content: space-between; align-items: center; gap: 1rem;
-    padding: 1rem 1.25rem; background: var(--paper); border-bottom: 2px solid var(--ink);
+  .project .frame img { max-height: 100%; max-width: 100%; width: auto; object-fit: contain; display: block; margin: 0 auto; }
+  .project .frame .placeholder {
+    width: 100%; height: 100%; display: grid; place-items: center; color: #fff;
+    font: 800 1.05rem var(--display); text-align: center; padding: 1rem;
   }
-  .gallery-head h3 { font-size: 1.5rem; }
-  .gallery-head button {
-    font: 700 1rem var(--body); cursor: pointer; padding: .45rem 1rem; border-radius: 999px;
-    border: 2px solid var(--ink); background: var(--card); color: var(--ink);
-  }
-  .gallery-head button:hover { background: var(--ink); color: #fff; }
-  .shots { columns: 14rem 3; column-gap: 1rem; padding: 1.25rem; }
-  .shots figure { margin: 0 0 1rem; break-inside: avoid; }
-  .shots img, .shots .ph { width: 100%; display: block; border: 2px solid var(--ink); border-radius: 8px; }
-  .shots .ph {
-    aspect-ratio: 2 / 3; background: var(--c, var(--blue)); color: #fff;
-    display: grid; place-items: center; font: 800 1rem var(--display);
-  }
-  .shots figcaption { font-size: .9rem; color: var(--muted); margin-top: .35rem; }
-
-  /* Asset gallery: square tiles instead of tall poster columns */
-  .shots.assets { columns: auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr)); gap: 1rem; }
-  .shots.assets figure { margin: 0; }
-  .shots.assets .ph { aspect-ratio: 1 / 1; }
+  .project .caption { display: flex; flex-direction: column; gap: .15rem; }
+  .project .caption h3 { font-size: 1.1rem; }
+  .project .caption p { margin: 0; color: var(--muted); font-size: .92rem; }
+  .project:hover .caption h3 { color: var(--blue); }
 
   /* Contact */
   .contact { background: var(--ink); color: #fff; border-radius: 18px; padding: 2.5rem clamp(1.25rem, 4vw, 3rem); margin-top: 4.5rem; }
@@ -165,8 +144,10 @@
     <a class="brand" href="#home">Princess Joy Vidad</a>
     <nav aria-label="Main">
       <a href="#home">Home</a>
-      <a href="#graphic-design">Graphic design</a>
-      <a href="#ui-ux">UI/UX design</a>
+      <a href="#posters">Posters</a>
+      <a href="#branding">Branding</a>
+      <a href="#mobile-app">Mobile app</a>
+      <a href="#website">Website</a>
       <a href="#contact">Contact</a>
     </nav>
     <div class="social">
@@ -186,7 +167,7 @@
         A graduate of BS in Computer Science, bridging Art, Research &amp; Tech.
       </p>
       <div class="actions">
-        <a class="btn primary" href="#ui-ux">See my work</a>
+        <a class="btn primary" href="#posters">See my work</a>
         <a class="btn" href="#contact">Get in touch</a>
       </div>
 
@@ -230,97 +211,92 @@
     </section>
 
     <!-- ============ GRAPHIC DESIGN ============ -->
-    <section id="graphic-design">
-      <h2>Graphic design</h2>
-      <p class="intro">Open the poster collection here, or view each brand's full identity on Canva.</p>
-      <div class="grid">
+    <section id="posters">
+      <h2>Posters</h2>
+      <p class="intro">All of my poster work — scroll or use the arrows to see everything.</p>
+      <div class="carousel">
+        <button type="button" class="carousel-nav prev" aria-label="Scroll left">&larr;</button>
+        <div class="carousel-track">
+      <div class="project">
+        <div class="frame" style="--c:#e0457b"><img src="images/posters/4page-poster.png" alt="4-Page Poster"></div>
+        <div class="caption"><h3>4-Page Poster</h3></div>
+      </div>
+      <div class="project">
+        <div class="frame" style="--c:#7a3fd1"><img src="images/posters/retasify-a3-poster.png" alt="Retasify A3 Poster"></div>
+        <div class="caption"><h3>Retasify A3 Poster</h3></div>
+      </div>
+      <div class="project">
+        <div class="frame" style="--c:#d9772b"><img src="images/posters/skyrocket.png" alt="Skyrocket"></div>
+        <div class="caption"><h3>Skyrocket</h3></div>
+      </div>
+      <div class="project">
+        <div class="frame" style="--c:#1f8a70"><img src="images/posters/ucsp.png" alt="UCSP"></div>
+        <div class="caption"><h3>UCSP</h3></div>
+      </div>
+        </div>
+        <button type="button" class="carousel-nav next" aria-label="Scroll right">&rarr;</button>
+      </div>
+    </section>
 
-        <!-- Each card is a button. data-open must match the id of its gallery <dialog> below. -->
-        <button type="button" class="project" data-open="gallery-posters">
-          <span class="thumb" style="--c:#e0457b">
-            <!-- To use a cover image: replace "Posters" with <img src="images/posters/cover.jpg" alt="Poster collection cover"> -->
-            Posters
-          </span>
-          <span class="body">
-            <h3>Posters</h3>
-            <p>Posters for events and campaigns.</p>
-            <span class="tags"><span>Poster design</span></span>
-            <span class="more">View all posters</span>
-          </span>
-        </button>
-
-        <!-- Branding: each card opens its Canva public view link in a new tab. -->
-        <a class="project" href="https://canva.link/z2eprb1j71p6orh" target="_blank" rel="noopener">
-          <div class="thumb" style="--c:#7a3fd1"><img src="images/branding/threadoffables.png" alt="Thread of Fables branding cover"></div>
-          <div class="body">
-            <h3>Thread of Fables</h3>
-            <p>Logo, colors and visual identity for a game.</p>
-            <ul class="tags"><li>Branding</li><li>Game branding</li></ul>
-            <span class="more">View on Canva</span>
-          </div>
-        </a>
-        <a class="project" href="https://canva.link/y9v6yv5ungz8i8a" target="_blank" rel="noopener">
-          <div class="thumb" style="--c:#1f8a70"><img src="images/branding/retasify.png" alt="Retasify branding cover"></div>
-          <div class="body">
-            <h3>Retasify</h3>
-            <p>Brand identity for a sustainable fashion start-up.</p>
-            <ul class="tags"><li>Branding</li><li>Start-up</li></ul>
-            <span class="more">View on Canva</span>
-          </div>
-        </a>
-        <a class="project" href="https://canva.link/ggv268hd2khy4sg" target="_blank" rel="noopener">
-          <div class="thumb" style="--c:#e0457b"><img src="images/branding/jjangaida.png" alt="Jjang Aida branding cover"></div>
-          <div class="body">
-            <h3>Jjang Aida</h3>
-            <p>Brand identity for a small Korean store.</p>
-            <ul class="tags"><li>Branding</li><li>Small business</li></ul>
-            <span class="more">View on Canva</span>
-          </div>
-        </a>
+        <section id="branding">
+      <h2>Branding</h2>
+      <p class="intro">Each image opens the brand's public Canva view.</p>
+      <div class="carousel">
+        <button type="button" class="carousel-nav prev" aria-label="Scroll left">&larr;</button>
+        <div class="carousel-track">
+      <a class="project" href="https://canva.link/z2eprb1j71p6orh" target="_blank" rel="noopener">
+        <div class="frame" style="--c:#7a3fd1"><img src="images/branding/threadoffables.png" alt="Thread of Fables branding cover"></div>
+        <div class="caption"><h3>Thread of Fables</h3><p>Logo, colors and visual identity for a game.</p></div>
+      </a>
+      <a class="project" href="https://canva.link/y9v6yv5ungz8i8a" target="_blank" rel="noopener">
+        <div class="frame" style="--c:#1f8a70"><img src="images/branding/retasify.png" alt="Retasify branding cover"></div>
+        <div class="caption"><h3>Retasify</h3><p>Brand identity for a sustainable fashion start-up.</p></div>
+      </a>
+      <a class="project" href="https://canva.link/ggv268hd2khy4sg" target="_blank" rel="noopener">
+        <div class="frame" style="--c:#e0457b"><img src="images/branding/jjangaida.png" alt="Jjang Aida branding cover"></div>
+        <div class="caption"><h3>Jjang Aida</h3><p>Brand identity for a small Korean store.</p></div>
+      </a>
+        </div>
+        <button type="button" class="carousel-nav next" aria-label="Scroll right">&rarr;</button>
       </div>
     </section>
 
     <!-- ============ UI/UX ============ -->
-    <section id="ui-ux">
-      <h2>UI/UX design</h2>
-      <p class="intro">Mobile app and website designs. Each card opens a Figma prototype you can click through.</p>
-      <div class="grid">
-        <a class="project" href="https://www.figma.com/proto/xo4ktxK4gK10ykyVl1AWxs/PHashion-in-the-Making?node-id=11-5&amp;p=f&amp;t=nDoCUOqASpIfUCND-1&amp;scaling=scale-down&amp;content-scaling=fixed&amp;page-id=0%3A1&amp;starting-point-node-id=3%3A3&amp;show-proto-sidebar=1" target="_blank" rel="noopener">
-          <div class="thumb" style="--c:#141b34">PHashion in the Making</div>
-          <div class="body">
-            <h3>PHashion in the Making</h3>
-            <p>Mobile app design for a sustainable fashion start-up.</p>
-            <ul class="tags"><li>Mobile app</li><li>Sustainable fashion</li></ul>
-            <span class="more">Open Figma prototype</span>
-          </div>
-        </a>
-        <a class="project" href="https://www.figma.com/proto/2uu8Cc0n9Lkeg1h5WORsn5/Jjang-Aida?node-id=32-502&amp;p=f&amp;t=x9ZNr7SZqDW0QN1X-1&amp;scaling=scale-down&amp;content-scaling=fixed&amp;page-id=0%3A1&amp;starting-point-node-id=32%3A502" target="_blank" rel="noopener">
-          <div class="thumb" style="--c:#e0457b">Jjang Aida mobile website</div>
-          <div class="body">
-            <h3>Jjang Aida</h3>
-            <p>Mobile website design for a small Korean store.</p>
-            <ul class="tags"><li>Mobile website</li><li>Small business</li></ul>
-            <span class="more">Open Figma prototype</span>
-          </div>
-        </a>
-        <a class="project" href="https://www.figma.com/proto/HGxOidjjZ0zB3rT3eVna3F/PHashion?node-id=13-71&amp;starting-point-node-id=1%3A2&amp;content-scaling=responsive&amp;t=ZYOrZjrCzJmF2KJJ-1" target="_blank" rel="noopener">
-          <div class="thumb" style="--c:#2f4bff">PHashion (earlier version)</div>
-          <div class="body">
-            <h3>PHashion (Earlier Version)</h3>
-            <p>An earlier version of the PHashion mobile app.</p>
-            <ul class="tags"><li>Mobile app</li><li>Sustainable fashion</li></ul>
-            <span class="more">Open Figma prototype</span>
-          </div>
-        </a>
-        <a class="project" href="https://www.figma.com/proto/dPLVJ0zlCXV3BJpjQoAFm5/Retasify-Landing-Page?node-id=464-71&amp;p=f&amp;t=f1xNl61umr3CsU5r-1&amp;scaling=scale-down&amp;content-scaling=fixed&amp;page-id=0%3A1" target="_blank" rel="noopener">
-          <div class="thumb" style="--c:#1f8a70">Retasify landing page</div>
-          <div class="body">
-            <h3>Retasify Landing Page</h3>
-            <p>Landing page design for a sustainable fashion start-up.</p>
-            <ul class="tags"><li>Website</li><li>Landing page</li></ul>
-            <span class="more">Open Figma prototype</span>
-          </div>
-        </a>
+    <section id="mobile-app">
+      <h2>Mobile app design</h2>
+      <p class="intro">Each image opens a Figma prototype you can click through.</p>
+      <div class="carousel">
+        <button type="button" class="carousel-nav prev" aria-label="Scroll left">&larr;</button>
+        <div class="carousel-track">
+      <a class="project" href="https://www.figma.com/proto/xo4ktxK4gK10ykyVl1AWxs/PHashion-in-the-Making?node-id=11-5&amp;p=f&amp;t=nDoCUOqASpIfUCND-1&amp;scaling=scale-down&amp;content-scaling=fixed&amp;page-id=0%3A1&amp;starting-point-node-id=3%3A3&amp;show-proto-sidebar=1" target="_blank" rel="noopener">
+        <div class="frame" style="--c:#141b34"><span class="placeholder">PHashion in the Making<br><small>Add image</small></span></div>
+        <div class="caption"><h3>PHashion in the Making</h3><p>Mobile app design for a sustainable fashion start-up.</p></div>
+      </a>
+      <a class="project" href="https://www.figma.com/proto/HGxOidjjZ0zB3rT3eVna3F/PHashion?node-id=13-71&amp;starting-point-node-id=1%3A2&amp;content-scaling=responsive&amp;t=ZYOrZjrCzJmF2KJJ-1" target="_blank" rel="noopener">
+        <div class="frame" style="--c:#2f4bff"><span class="placeholder">PHashion (Earlier Version)<br><small>Add image</small></span></div>
+        <div class="caption"><h3>PHashion (Earlier Version)</h3><p>An earlier version of the PHashion mobile app.</p></div>
+      </a>
+        </div>
+        <button type="button" class="carousel-nav next" aria-label="Scroll right">&rarr;</button>
+      </div>
+    </section>
+
+        <section id="website">
+      <h2>Website design</h2>
+      <p class="intro">Each image opens a Figma prototype you can click through.</p>
+      <div class="carousel">
+        <button type="button" class="carousel-nav prev" aria-label="Scroll left">&larr;</button>
+        <div class="carousel-track">
+      <a class="project" href="https://www.figma.com/proto/2uu8Cc0n9Lkeg1h5WORsn5/Jjang-Aida?node-id=32-502&amp;p=f&amp;t=x9ZNr7SZqDW0QN1X-1&amp;scaling=scale-down&amp;content-scaling=fixed&amp;page-id=0%3A1&amp;starting-point-node-id=32%3A502" target="_blank" rel="noopener">
+        <div class="frame" style="--c:#e0457b"><span class="placeholder">Jjang Aida<br><small>Add image</small></span></div>
+        <div class="caption"><h3>Jjang Aida</h3><p>Mobile website design for a small Korean store.</p></div>
+      </a>
+      <a class="project" href="https://www.figma.com/proto/dPLVJ0zlCXV3BJpjQoAFm5/Retasify-Landing-Page?node-id=464-71&amp;p=f&amp;t=f1xNl61umr3CsU5r-1&amp;scaling=scale-down&amp;content-scaling=fixed&amp;page-id=0%3A1" target="_blank" rel="noopener">
+        <div class="frame" style="--c:#1f8a70"><span class="placeholder">Retasify Landing Page<br><small>Add image</small></span></div>
+        <div class="caption"><h3>Retasify Landing Page</h3><p>Landing page design for a sustainable fashion start-up.</p></div>
+      </a>
+        </div>
+        <button type="button" class="carousel-nav next" aria-label="Scroll right">&rarr;</button>
       </div>
     </section>
 
@@ -338,32 +314,16 @@
 <!-- ============ GALLERIES (pop-ups) ============ -->
 <!-- Poster images live in the images/posters/ folder. To add a poster, copy a <figure> block
      and change the file name, alt text and caption. -->
-<dialog class="gallery" id="gallery-posters" aria-labelledby="posters-title">
-  <div class="gallery-head">
-    <h3 id="posters-title">Posters</h3>
-    <button type="button" class="close">Close</button>
-  </div>
-  <div class="shots">
-    <figure><img src="images/posters/4page-poster.png" alt="4-Page Poster"><figcaption>4-Page Poster</figcaption></figure>
-    <figure><img src="images/posters/retasify-a3-poster.png" alt="Retasify A3 Poster"><figcaption>Retasify A3 Poster</figcaption></figure>
-    <figure><img src="images/posters/skyrocket.png" alt="Skyrocket"><figcaption>Skyrocket</figcaption></figure>
-    <figure><img src="images/posters/ucsp.png" alt="UCSP"><figcaption>UCSP</figcaption></figure>
-  </div>
-</dialog>
-
 <script>
-  // Open a gallery when its card is clicked
-  document.querySelectorAll('[data-open]').forEach(function (card) {
-    card.addEventListener('click', function () {
-      document.getElementById(card.dataset.open).showModal();
-      document.body.style.overflow = 'hidden';
+  document.querySelectorAll('.carousel').forEach(function (car) {
+    var track = car.querySelector('.carousel-track');
+    var step = function () { return track.clientWidth * 0.8; };
+    car.querySelector('.prev').addEventListener('click', function () {
+      track.scrollBy({ left: -step(), behavior: 'smooth' });
     });
-  });
-  // Close with the button, a click outside the window, or Esc
-  document.querySelectorAll('dialog.gallery').forEach(function (d) {
-    d.querySelector('.close').addEventListener('click', function () { d.close(); });
-    d.addEventListener('click', function (e) { if (e.target === d) d.close(); });
-    d.addEventListener('close', function () { document.body.style.overflow = ''; });
+    car.querySelector('.next').addEventListener('click', function () {
+      track.scrollBy({ left: step(), behavior: 'smooth' });
+    });
   });
 </script>
 </body>

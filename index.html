@@ -108,6 +108,7 @@
     background: var(--c, var(--line));
   }
   .project .frame img { max-height: 100%; max-width: 100%; width: auto; object-fit: contain; display: block; margin: 0 auto; }
+  .project .frame video { max-height: 100%; max-width: 100%; width: auto; object-fit: contain; display: block; margin: 0 auto; background: #000; }
   .project .frame iframe { width: 100%; height: 100%; border: 0; display: block; }
   .project .frame .placeholder {
     width: 100%; height: 100%; display: grid; place-items: center; color: #fff;
@@ -149,6 +150,7 @@
       <a href="#branding">Branding</a>
       <a href="#mobile-app">Mobile app</a>
       <a href="#website">Website</a>
+      <a href="#motion">Motion graphics</a>
       <a href="#contact">Contact</a>
     </nav>
     <div class="social">
@@ -293,6 +295,37 @@
         <div class="frame" style="--c:#1f8a70"><iframe src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FdPLVJ0zlCXV3BJpjQoAFm5%2FRetasify-Landing-Page%3Fnode-id%3D464-71%26p%3Df%26t%3Df1xNl61umr3CsU5r-1%26scaling%3Dscale-down%26content-scaling%3Dfixed%26page-id%3D0%253A1" allowfullscreen loading="lazy" title="Retasify Landing Page prototype preview"></iframe></div>
         <div class="caption"><h3>Retasify Landing Page</h3><p>Landing page design for a sustainable fashion start-up.</p></div>
       </a>
+        </div>
+        <button type="button" class="carousel-nav next" aria-label="Scroll right">&rarr;</button>
+      </div>
+    </section>
+
+        <!-- ============ MOTION GRAPHICS ============ -->
+    <!-- Upload your two .mp4 files to a "videos" folder in the repo, named motion-1.mp4 and motion-2.mp4
+         (or edit the src paths below to match your real file names). Keep each file under ~20-30MB so it
+         loads quickly; longer reels are better hosted on YouTube/Vimeo and embedded instead. -->
+    <section id="motion">
+      <h2>Animation &amp; motion graphics</h2>
+      <p class="intro">A look at my animation and motion graphics work.</p>
+      <div class="carousel">
+        <button type="button" class="carousel-nav prev" aria-label="Scroll left">&larr;</button>
+        <div class="carousel-track">
+      <div class="project">
+        <div class="frame" style="--c:#2f4bff">
+          <video controls preload="metadata" src="videos/motion-1.mp4">
+            Your browser doesn't support embedded video. <a href="videos/motion-1.mp4">Download the file</a> instead.
+          </video>
+        </div>
+        <div class="caption"><h3>Motion Reel 1</h3><p>Replace this caption with what the piece is.</p></div>
+      </div>
+      <div class="project">
+        <div class="frame" style="--c:#d9772b">
+          <video controls preload="metadata" src="videos/motion-2.mp4">
+            Your browser doesn't support embedded video. <a href="videos/motion-2.mp4">Download the file</a> instead.
+          </video>
+        </div>
+        <div class="caption"><h3>Motion Reel 2</h3><p>Replace this caption with what the piece is.</p></div>
+      </div>
         </div>
         <button type="button" class="carousel-nav next" aria-label="Scroll right">&rarr;</button>
       </div>
